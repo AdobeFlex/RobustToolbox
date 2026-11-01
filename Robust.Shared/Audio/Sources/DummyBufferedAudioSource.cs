@@ -20,6 +20,11 @@ namespace Robust.Shared.Audio.Sources
             // Nada.
         }
 
+        public void WriteBuffer(int handle, ReadOnlySpan<short> samples)
+        {
+            // Nada.
+        }
+
         public void QueueBuffers(ReadOnlySpan<int> handles)
         {
             // Nada.

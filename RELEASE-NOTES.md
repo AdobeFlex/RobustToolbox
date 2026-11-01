@@ -39,7 +39,8 @@ END TEMPLATE-->
 
 ### New features
 
-*None yet*
+* `IBufferedAudioSource` and `IAudioManager.CreateBufferedAudioSource()` are now public, so content can stream audio it produces at runtime.
+* Added `IBufferedAudioSource.WriteBuffer(int, ReadOnlySpan<short>)` for mono signed 16-bit samples.
 
 ### Bugfixes
 

@@ -31,6 +31,14 @@ public interface IAudioManager
 
     AudioStream LoadAudioRaw(ReadOnlySpan<short> samples, int channels, int sampleRate, string? name = null);
 
+    /// <summary>
+    /// Creates a source that plays PCM buffers queued by the caller, for audio produced at runtime.
+    /// </summary>
+    /// <param name="buffers">How many buffers the source cycles through.</param>
+    /// <param name="floatAudio">Whether buffers take 32-bit float samples instead of 16-bit integers.</param>
+    /// <returns>null if unable to create the source.</returns>
+    IBufferedAudioSource? CreateBufferedAudioSource(int buffers, bool floatAudio = false);
+
     float BaseGain { get; }
 
     float FadeGain { get; }

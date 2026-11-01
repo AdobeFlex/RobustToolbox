@@ -350,7 +350,7 @@ internal partial class AudioManager
     }
 
     /// <inheritdoc/>
-    IBufferedAudioSource? IAudioInternal.CreateBufferedAudioSource(int buffers, bool floatAudio)
+    public IBufferedAudioSource? CreateBufferedAudioSource(int buffers, bool floatAudio = false)
     {
         var source = AL.GenSource();
 

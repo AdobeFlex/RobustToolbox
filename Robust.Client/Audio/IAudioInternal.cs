@@ -27,12 +27,6 @@ internal interface IAudioInternal : IAudioManager
     void FrameUpdate(float frameTime);
 
     /// <summary>
-    /// Returns a buffered audio source.
-    /// </summary>
-    /// <returns>null if unable to create the source.</returns>
-    IBufferedAudioSource? CreateBufferedAudioSource(int buffers, bool floatAudio=false);
-
-    /// <summary>
     /// Sets the velocity for the audio listener.
     /// </summary>
     void SetVelocity(Vector2 velocity);

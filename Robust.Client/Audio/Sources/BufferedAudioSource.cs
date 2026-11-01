@@ -158,6 +158,25 @@ internal sealed class BufferedAudioSource : BaseAudioSource, IBufferedAudioSourc
         }
     }
 
+    public unsafe void WriteBuffer(int handle, ReadOnlySpan<short> samples)
+    {
+        _checkDisposed();
+
+        if (_float)
+            throw new InvalidOperationException("Can't write short numbers to buffers when buffer type is float!");
+
+        if (handle >= BufferHandles.Length)
+        {
+            throw new ArgumentOutOfRangeException(nameof(handle),
+                $"Got {handle}. Expected less than {BufferHandles.Length}");
+        }
+
+        fixed (short* ptr = samples)
+        {
+            AL.BufferData(BufferHandles[handle], ALFormat.Mono16, (IntPtr) ptr, samples.Length * sizeof(short), SampleRate);
+        }
+    }
+
     public unsafe void QueueBuffers(ReadOnlySpan<int> handles)
     {
         _checkDisposed();
