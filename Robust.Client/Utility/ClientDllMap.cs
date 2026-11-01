@@ -3,6 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using OpenTK.Audio.OpenAL;
+using Robust.Client.Audio.Codecs;
 using SDL3;
 
 namespace Robust.Client.Utility
@@ -19,6 +20,17 @@ namespace Robust.Client.Utility
 #if LINUX || FREEBSD
                     return NativeLibrary.Load("libEGL.so", assembly, path);
 #endif
+                }
+
+                if (name == OpusNative.LibraryName)
+                {
+#if MACOS
+                    const string opus = "libopus.0.dylib";
+#else
+                    const string opus = "libopus.so.0";
+#endif
+                    if (NativeLibrary.TryLoad(opus, assembly, path, out var handle))
+                        return handle;
                 }
 
                 return IntPtr.Zero;

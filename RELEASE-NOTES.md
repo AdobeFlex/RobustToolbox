@@ -39,7 +39,7 @@ END TEMPLATE-->
 
 ### New features
 
-*None yet*
+* Added `OpusEncoder` and `OpusDecoder` in `Robust.Client.Audio.Codecs`, a client-side Opus codec over libopus from Robust.Natives.
 
 ### Bugfixes
 
