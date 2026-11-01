@@ -39,7 +39,9 @@ END TEMPLATE-->
 
 ### New features
 
-*None yet*
+* Added microphone capture: `IAudioManager.RequestCapture()` returns an `IAudioCapture` of mono 16-bit samples. The engine only opens a microphone after the player allows the server and picks the device in an engine prompt, which content can't answer. Answers are kept per server for the game session, or across restarts with "don't ask again". The engine draws a recording indicator while anything records.
+* Added `IAudioManager.GetCaptureDevices()` and `IAudioManager.ResetCaptureConsent()`, which lets content offer a button that takes its server's microphone permission away.
+* Added the `audio.capture_device` and `audio.capture_indicator` CVars.
 
 ### Bugfixes
 

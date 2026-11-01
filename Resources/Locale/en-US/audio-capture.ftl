@@ -1,0 +1,11 @@
+audio-capture-consent-title = Microphone access
+audio-capture-consent-text = This server wants to use your microphone. While it records, a microphone indicator is shown at the top of the screen unless you have hidden it. Your answer lasts until you restart the game, or across restarts if you tick "Don't ask again". The chosen microphone is remembered.
+audio-capture-consent-server = Server: { $server }
+audio-capture-consent-device = Microphone:
+audio-capture-consent-device-none = Choose a microphone
+audio-capture-consent-device-missing = No microphones found
+audio-capture-consent-remember = Don't ask again for this server
+audio-capture-consent-local = local game
+audio-capture-consent-allow = Allow
+audio-capture-consent-deny = Deny
+audio-capture-indicator = Microphone

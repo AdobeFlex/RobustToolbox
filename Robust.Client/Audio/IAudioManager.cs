@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using Robust.Client.Audio.Capture;
 using Robust.Shared;
 
 namespace Robust.Client.Audio;
@@ -30,6 +31,29 @@ public interface IAudioManager
     AudioStream LoadAudioWav(Stream stream, string? name = null);
 
     AudioStream LoadAudioRaw(ReadOnlySpan<short> samples, int channels, int sampleRate, string? name = null);
+
+    /// <summary>
+    /// Lists the microphones available on the system.
+    /// </summary>
+    /// <seealso cref="CVars.AudioCaptureDevice"/>
+    IReadOnlyList<string> GetCaptureDevices();
+
+    /// <summary>
+    /// Asks for microphone access. The engine opens a device only after the player allows it and picks the
+    /// microphone in an engine prompt, so the returned capture stays <see cref="AudioCaptureState.Pending"/>
+    /// until they answer. The answer is kept per server for the rest of the game session, or across restarts if
+    /// the player ticks "don't ask again". The microphone is remembered in <see cref="CVars.AudioCaptureDevice"/>,
+    /// and open captures follow when that CVar changes. Captures are closed when the client disconnects.
+    /// </summary>
+    /// <param name="sampleRate">Sample rate of the mono 16-bit audio to capture.</param>
+    IAudioCapture RequestCapture(int sampleRate = 48000);
+
+    /// <summary>
+    /// Forgets the current server's answer to the microphone prompt, including a remembered one, and closes open
+    /// captures, so the next request asks again. Meant for a settings button: content can only take its own server's
+    /// permission away with it, and other servers' answers stay as they are.
+    /// </summary>
+    void ResetCaptureConsent();
 
     float BaseGain { get; }
 

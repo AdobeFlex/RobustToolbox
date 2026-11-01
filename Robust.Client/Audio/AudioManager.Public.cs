@@ -51,6 +51,7 @@ internal partial class AudioManager
         _cfg.UnsubValueChanged(CVars.AudioMuteUnfocused, OnMuteUnfocusedChanged);
         _cfg.UnsubValueChanged(CVars.AudioDevice, OnAudioDeviceChanged);
 
+        ShutdownCapture();
         DisposeAllAudio();
 
         if (_openALContext != ALContext.Null)

@@ -1438,6 +1438,21 @@ namespace Robust.Shared
             CVarDef.Create("audio.device", string.Empty, CVar.CLIENTONLY | CVar.ARCHIVE);
 
         /// <summary>
+        /// Microphone the player picked for capture, a name from <c>IAudioManager.GetCaptureDevices</c>.
+        /// Empty, or a device that is no longer present, makes the next capture request ask the player to pick one.
+        /// The system default is never used on its own: it is often a silent virtual device.
+        /// </summary>
+        public static readonly CVarDef<string> AudioCaptureDevice =
+            CVarDef.Create("audio.capture_device", string.Empty, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+        /// <summary>
+        /// Whether to draw the recording indicator over all UI while the microphone records.
+        /// Hiding it changes nothing about consent: each server still has to be allowed in the engine prompt.
+        /// </summary>
+        public static readonly CVarDef<bool> AudioCaptureIndicator =
+            CVarDef.Create("audio.capture_indicator", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+        /// <summary>
         /// Master volume for audio output.
         /// </summary>
         public static readonly CVarDef<float> AudioMasterVolume =

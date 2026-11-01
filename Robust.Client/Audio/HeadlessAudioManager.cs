@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Numerics;
+using Robust.Client.Audio.Capture;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.AudioLoading;
 using Robust.Shared.Audio.Sources;
@@ -52,6 +53,20 @@ internal sealed class HeadlessAudioManager : IAudioInternal
     public string? GetDefaultAudioDevice()
     {
         return null;
+    }
+
+    public IReadOnlyList<string> GetCaptureDevices()
+    {
+        return _emptyDevices;
+    }
+
+    public IAudioCapture RequestCapture(int sampleRate = 48000)
+    {
+        return new DummyAudioCapture(sampleRate);
+    }
+
+    public void ResetCaptureConsent()
+    {
     }
 
     /// <inheritdoc />
